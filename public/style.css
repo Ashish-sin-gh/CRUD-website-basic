@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    
+}
+html{
+    background: linear-gradient(125.95deg, #C700BF 10.95%, #7DA900 100%), linear-gradient(341.1deg, #00C2FF 7.52%, #4E00B1 77.98%), linear-gradient(222.34deg, #A90000 12.99%, #00FFE0 87.21%), linear-gradient(130.22deg, #8FA600 18.02%, #5A31FF 100%);
+    background-blend-mode: screen, color-dodge, color-dodge, normal;
+    background-color: aliceblue;
+    height: 100vh;
+}
+
+body{
+    margin: 0 20px 0;
+}
+
+h1{
+    color:rgb(16, 107, 204);
+    text-decoration-line: underline;
+}
+
+.each-document{
+    width: 30%;
+    border: 1px solid #000000;
+    margin: 5px; 
+    padding: 10px;
+    border-radius: 10px;
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quotes{
+    list-style-type: none;
+}
+
+h5{
+    padding-top: 0;
+    /* border: 2px solid black; */
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.input-form{
+    margin: 10px;
+    /* border: 2px solid black; */
+    width: 50%;
+}
+
+input, .submit{
+    display: block;
+    margin: 10px;
+    width: 50%;
+}
+
+.submit{
+    text-align: center;
+    width: 20%;
+    margin-left: 15%;
+}

@@ -2,28 +2,43 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Gods Plan</title>
+        <link rel="stylesheet" href="/style.css">
     </head>
     <body>
-        <h1>star-war quotes</h1>
+        <h1>Quote The Unquoted</h1>
         <h2>Enter the quote</h2>
+        <div class="input-form">
+            <form action="/quote" method="POST">
+                <input type="text" placeholder="name" name="name"/>
+                <input type="text" placeholder="quote" name="quote"/>
+                <button type="submit" class="submit">submit</button>
+        </div>
+        </form>
 
+        <h2>Quotes collection:</h2>
         <ul class="quotes">
             <!-- Loop through quotes -->
             <% for(var i = 0; i < quotes.length; i++) {%>
-            <li class="quote">
-              <!-- Output name from the iterated quote object -->
-              <span><%= quotes[i].name %></span>:
-              <!-- Output quote from the iterated quote object -->
-              <span><%= quotes[i].quote %></span>
-            </li>
+                <div class="each-document">
+                    <li class="quote">
+                        <h5 class="result-list">
+                            <!-- Output name from the iterated quote object -->
+                            <span><%= quotes[i].name %></span>:
+                            <!-- Output quote from the iterated quote object -->
+                            <span><%= quotes[i].quote %></span>
+                        </h5>
+                        <div class="functions">
+                            <button type="button" class="delete-button">delete</button>
+                            <h5>like <span><%= quotes[i].likes %></span></h5>
+                            <button type="button" class="like-button">LIKE</button>
+                        </div>
+                    </li>
+                </div>
             <% } %>
-          </ul>
-
-        <form action="/quote" method="POST">
-            <input type="text" placeholder="name" name="name"/>
-            <input type="text" placeholder="quote" name="quote"/>
-            <button type="submit">submit</submit>
-        </form>
+        </ul>       
+        
+        <script src="/script.js"></script>
     </body>
 </html>

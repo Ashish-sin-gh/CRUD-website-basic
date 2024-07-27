@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 
 const mongoClient = require('mongodb').MongoClient;
 
-const connectingString = "mongodb+srv://Ashish:Ashish123%40@cluster0.vifg5u7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+require('dotenv').config();
 
-
+const connectingString = process.env.DB_STRING;
 
 mongoClient.connect(connectingString)
     .then(client => {
@@ -16,6 +16,8 @@ mongoClient.connect(connectingString)
         const quotesCollection = db.collection('quotes');
 
         app.use(bodyParser.urlencoded({extended: true})); //The urlencoded method within body-parser tells body-parser to extract data from the <form> element and add them to the body property in the request object.
+
+        app.use(express.static(__dirname + '/public'));
 
         app.set('view engine', 'ejs');
 
@@ -34,7 +36,7 @@ mongoClient.connect(connectingString)
         });
         
         app.post('/quote',(req,res)=>{
-            quotesCollection.insertOne(req.body)
+            quotesCollection.insertOne({'name': req.body.name , 'quote': req.body.quote, 'likes' : 0})
             .then(result => {
                 console.log('document added');
                 res.redirect('/');
