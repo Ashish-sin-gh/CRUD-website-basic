@@ -25,14 +25,14 @@
                     <li class="quote">
                         <h5 class="result-list">
                             <!-- Output name from the iterated quote object -->
-                            <span><%= quotes[i].name %></span>:
+                            <span class="name-span"><%= quotes[i].name %></span>:
                             <!-- Output quote from the iterated quote object -->
-                            <span><%= quotes[i].quote %></span>
+                            <span class="quote-span"><%= quotes[i].quote %></span>
                         </h5>
                         <div class="functions">
-                            <button type="button" class="delete-button">delete</button>
-                            <h5>like <span><%= quotes[i].likes %></span></h5>
-                            <button type="button" class="like-button">LIKE</button>
+                            <button type="button" class="delete-button" data-index="<%= i %>" >delete</button>
+                            <h5>like <span class="like-span"><%= quotes[i].likes %></span></h5>
+                            <button type="button" class="like-button" data-index="<%= i %>">LIKE</button>
                         </div>
                     </li>
                 </div>

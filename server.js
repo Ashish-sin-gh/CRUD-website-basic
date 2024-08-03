@@ -7,19 +7,20 @@ const mongoClient = require('mongodb').MongoClient;
 
 require('dotenv').config();
 
-const connectingString = process.env.DB_STRING;
-
+const connectingString = process.env.DB_STRING; 
 mongoClient.connect(connectingString)
     .then(client => {
         console.log('connected to database');
         const db = client.db('star-wars-quotes');
         const quotesCollection = db.collection('quotes');
 
-        app.use(bodyParser.urlencoded({extended: true})); //The urlencoded method within body-parser tells body-parser to extract data from the <form> element and add them to the body property in the request object.
+        app.use(express.urlencoded({extended: true})); 
 
-        app.use(express.static(__dirname + '/public'));
+        app.use(express.static(__dirname + '/public')); // serve static files
 
-        app.set('view engine', 'ejs');
+        app.use(express.json());
+
+        app.set('view engine', 'ejs'); // sets the view engine as .ejs file. this helps make the page dynamic as the ejs placeholders get data real time and render it on the web page.  
 
         app.get('/',(req, res)=>{
             //console.log(__dirname); // pwd 
@@ -43,7 +44,21 @@ mongoClient.connect(connectingString)
             })
             .catch(error => console.error(error));
         });
-        
+
+        app.put('/addLike',(req,res)=>{
+            console.log(req.body);
+        });
+
+         app.delete('/delete', (req,res)=>{
+            console.log(req.body);
+            db.collection('quotes').deleteOne({name : req.body.nameQ})
+            .then (result =>{
+                console.log(' rapper deleted');
+                res.json('rapper deleted');
+            })
+            .catch(err => console.error(err));
+         });   
+
         app.listen(3000, (request, response) =>{
             console.log('listening on port 3000');
         });
