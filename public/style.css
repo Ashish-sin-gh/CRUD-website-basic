@@ -1,33 +1,64 @@
 *{
     box-sizing: border-box;
+    font-family: Poppins, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     
 }
 
+
 body{
-    margin: 0 20px 0;
-    background: linear-gradient(125.95deg, #C700BF 10.95%, #7DA900 100%), linear-gradient(341.1deg, #00C2FF 7.52%, #4E00B1 77.98%), linear-gradient(222.34deg, #A90000 12.99%, #00FFE0 87.21%), linear-gradient(130.22deg, #8FA600 18.02%, #5A31FF 100%);
-    background-blend-mode: screen, color-dodge, color-dodge, normal;
+    padding: 10px;
+    position: relative;
+    /* height: 100vh; */
+    
+}
+
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/imageBGmain.jpg'); 
+    background-size: 100%;
+    /* background-position: center; */
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.parentDIV {
+    margin: 10px  30px;
 }
 
 h1{
-    color:rgb(16, 107, 204);
-    text-decoration-line: underline;
+    font-size: 40px;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-shadow: 2px 3px 6px #000000, 2px 2px 5px #4543432d;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .each-document{
-    width: 30%;
+    width: 250px;
     border: 1px solid #000000;
     margin: 5px; 
-    padding: 10px;
-    border-radius: 10px;
+    padding: 20px;
+    padding-bottom: 5px;
+    border-radius: 20px;
 }
 ul{
     display: flex;
     flex-wrap: wrap;
+    align-content: space-around;
 }
 
 .quotes{
     list-style-type: none;
+    margin-right: 0;
 }
 
 h5{
@@ -40,21 +71,54 @@ h5{
 .input-form{
     margin: 10px;
     /* border: 2px solid black; */
-    width: 50%;
+    /* width: 50%; */
 }
 
 input, .submit{
-    display: block;
+    /* display: block; */
     margin: 10px;
-    width: 50%;
+    margin-left: 0 ;
+    width: 270px;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
 }
 
 .submit{
     text-align: center;
-    width: 20%;
-    margin-left: 15%;
+    max-width: 100px;
+    /* margin-left: 15%; */
 }
 
-.delete-button{
+input:hover, .submit:hover{
+    font-size: 15px;
+}
+
+.delete-button, .like-button{
+    margin: 5px;
     margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.delete-button:hover, .like-button:hover{
+    font-size: 15px;
+}
+
+.like-txt{
+    font-size: 16px;
+}
+
+
+.h2enter{
+    text-align: center;
+    display: inline;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+form{
+    display: flex;
+    justify-content: space-between;
 }

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const delBtnIndex = event.target.getAttribute('data-index');
         const nameStr = document.querySelectorAll('.name-span')[delBtnIndex].innerText;
         const quoteStr = document.querySelectorAll('.quote-span')[delBtnIndex].innerText;
-        const likesStr = Number(document.querySelectorAll('.like-span')[delBtnIndex].innerText);
+        let likesStr = Number(document.querySelectorAll('.like-span')[delBtnIndex].innerText);
         
         console.log(delBtnIndex);
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const likeBtnIdx = event.target.getAttribute('data-index');
         const nameStr = document.querySelectorAll('.name-span')[likeBtnIdx].innerText;
         const quoteStr = document.querySelectorAll('.quote-span')[likeBtnIdx].innerText;
-        const likesStr = Number(document.querySelectorAll('.like-span')[likeBtnIdx].innerText);
+        let likesStr = Number(document.querySelectorAll('.like-span')[likeBtnIdx].innerText);
 
         try{
             const response = await fetch('/addLike', {

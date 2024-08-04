@@ -28,6 +28,7 @@ mongoClient.connect(connectingString)
 
             db.collection('quotes')
             .find()
+            .sort({likes : -1})
             .toArray()
             .then(result =>{
                 res.render('index.ejs', {quotes : result});
@@ -77,7 +78,7 @@ mongoClient.connect(connectingString)
                 }
             },
             {
-                sort: {_id: -1}, //sort by decending order
+                sort: {likes: -1}, //sort by decending order
                 //upsert: true  // if data is not present add the data to DB
             })
             .then(result =>{
@@ -95,13 +96,13 @@ mongoClient.connect(connectingString)
         });
 
          app.delete('/delete', (req,res)=>{
-            
-            console.log(req.body.quoteD + 'a' );
+
+            console.log(req.body);
             
             db.collection('quotes').deleteOne({
                 name : req.body.nameD,
                 quote : req.body.quoteD,
-                like : req.body.likeD
+                likes : req.body.likeD
             })
             .then (result =>{
                 console.log(result);

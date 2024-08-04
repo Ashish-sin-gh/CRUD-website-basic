@@ -4,46 +4,55 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Gods Plan</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiny5&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="/style.css">
     </head>
     <body>
-        <h1>Quote The Unquoted</h1>
-        <h2>Enter the quote</h2>
-        <div class="input-form">
-            <form action="/quote" method="POST">
-                <input type="text" placeholder="name" name="name"/>
-                <input type="text" placeholder="quote" name="quote"/>
-                <button type="submit" class="submit">submit</button>
+        <div class="parentDIV">
+            <h1>Quote The Unquoted</h1>
+            <h2 class="h2enter">Enter the quote :</h2>
+            <div class="input-form">
+                <form action="/quote" method="POST">
+                    <input type="text" placeholder="name" name="name"/>
+                    <input type="text" placeholder="quote" name="quote"/>
+                    <button type="submit" class="submit">submit</button>
+                </form>
+            </div>
+            
+            <h2>Quotes collection:</h2>
+            <ul class="quotes">
+                <!-- Loop through quotes -->
+                <% for(var i = 0; i < quotes.length; i++) {%>
+                    <div class="each-document">
+                        <li class="quote">
+                            <h5 class="result-list">
+                                <!-- Output name from the iterated quote object -->
+                                <div>
+                                    <span class="name-span"><%= quotes[i].name %></span>:
+                                </div>
+                                <!-- Output quote from the iterated quote object -->
+                                <div>
+                                    <p class="quote-span"><%= quotes[i].quote %></p>
+                                </div>
+                            </h5>
+                            <div class="functions">
+                                
+                                <h5 class="like-txt">like <span class="like-span"><%= quotes[i].likes %></span></h5>
+                                
+                                <button type="button" class="like-button" data-index="<%= i %>">LIKE</button>
+
+                                <button type="button" class="delete-button" data-index="<%= i %>" >delete</button>
+                            </div>
+                        </li>
+                    </div>
+                <% } %>
+            </ul>       
         </div>
-        </form>
-
-        <h2>Quotes collection:</h2>
-        <ul class="quotes">
-            <!-- Loop through quotes -->
-            <% for(var i = 0; i < quotes.length; i++) {%>
-                <div class="each-document">
-                    <li class="quote">
-                        <h5 class="result-list">
-                            <!-- Output name from the iterated quote object -->
-                             <div>
-                                 <span class="name-span"><%= quotes[i].name %></span>:
-                             </div>
-                            <!-- Output quote from the iterated quote object -->
-                             <div>
-                                 <p class="quote-span"><%= quotes[i].quote %></p>
-                             </div>
-                        </h5>
-                        <div class="functions">
-                            <button type="button" class="delete-button" data-index="<%= i %>" >delete</button>
-
-                            <h5>like <span class="like-span"><%= quotes[i].likes %></span></h5>
-                            
-                            <button type="button" class="like-button" data-index="<%= i %>">LIKE</button>
-                        </div>
-                    </li>
-                </div>
-            <% } %>
-        </ul>       
+        
         
         <script src="/script.js"></script>
     </body>
