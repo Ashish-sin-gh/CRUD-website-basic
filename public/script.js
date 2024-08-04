@@ -17,17 +17,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const likesStr = Number(document.querySelectorAll('.like-span')[delBtnIndex].innerText);
         
         console.log(delBtnIndex);
+
         try{
             const response = await fetch('/delete', {
                 method : 'delete',
                 headers : {'content-Type' : 'application/json'},
                 body : JSON.stringify({
-                    'NameQ' : nameStr,
-                    'QuoteQ' : quoteStr
+                    'nameD' : nameStr,
+                    'quoteD' : quoteStr,
+                    'likeD' : likesStr
                 })
             });
             const data = await response.json;
-            window.location.reload(true);
+            console.log(data);
+            location.reload();
         }
         catch(err){
             return console.error(err);

@@ -54,3 +54,7 @@ input, .submit{
     width: 20%;
     margin-left: 15%;
 }
+
+.delete-button{
+    margin-bottom: 10px;
+}

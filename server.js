@@ -37,7 +37,24 @@ mongoClient.connect(connectingString)
         });
         
         app.post('/quote',(req,res)=>{
-            quotesCollection.insertOne({'name': req.body.name , 'quote': req.body.quote, 'likes' : 0})
+            let q = req.body.quote;
+            let n = req.body.name; 
+            while(q.charAt(q.length-1) === " "){
+                if(q && q.charAt(q.length-1) === " "){
+                    q = q.substring(0, q.length - 1);
+                }
+            }
+            while (n.charAt(n.length-1) === " "){
+                if(n && n.charAt(n.length-1) === " "){
+                    n = n.substring(0, n.length - 1);
+                }
+            }
+           
+            if(!n || !q){
+                return console.log('no value entered');
+            }
+
+            quotesCollection.insertOne({'name': n , 'quote': q, 'likes' : 0})
             .then(result => {
                 console.log('document added');
                 res.redirect('/');
@@ -50,11 +67,22 @@ mongoClient.connect(connectingString)
         });
 
          app.delete('/delete', (req,res)=>{
-            console.log(req.body);
-            db.collection('quotes').deleteOne({name : req.body.nameQ})
+            console.log(req.body.quoteD + 'a' );
+            db.collection('quotes').deleteOne({
+                name : req.body.nameD,
+                quote : req.body.quoteD
+                // like : req.body.likeD
+            })
             .then (result =>{
-                console.log(' rapper deleted');
-                res.json('rapper deleted');
+                console.log(result);
+
+                if (result.deletedCount === 1) {
+                    console.log('Document deleted successfully');
+                    res.json('Document deleted successfully');
+                } else {
+                    console.log('No documents matched the query. Deleted 0 documents.');
+                    res.json('No documents matched the query. Deleted 0 documents.');
+                }
             })
             .catch(err => console.error(err));
          });   
