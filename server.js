@@ -63,15 +63,41 @@ mongoClient.connect(connectingString)
         });
 
         app.put('/addLike',(req,res)=>{
+            
             console.log(req.body);
+
+            db.collection('quotes').updateOne({
+                name : req.body.nameIs,
+                quote : req.body.quoteIs,
+                likes : req.body.likeIs
+            },
+            {
+                $set : {
+                    likes : req.body.likeIs + 1
+                }
+            })
+            .then(result =>{
+                console.log(result);
+
+                if (result.modifiedCount === 1) {
+                    console.log('Like added');
+                    res.json('Like added');
+                } else {
+                    console.log('No documents matched the query. No like added.');
+                    res.json('No documents matched the query. No like added.');
+                }
+            })
+            .catch(err => console.error(err));
         });
 
          app.delete('/delete', (req,res)=>{
+            
             console.log(req.body.quoteD + 'a' );
+            
             db.collection('quotes').deleteOne({
                 name : req.body.nameD,
-                quote : req.body.quoteD
-                // like : req.body.likeD
+                quote : req.body.quoteD,
+                like : req.body.likeD
             })
             .then (result =>{
                 console.log(result);

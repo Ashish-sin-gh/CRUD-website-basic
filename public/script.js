@@ -42,8 +42,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const nameStr = document.querySelectorAll('.name-span')[likeBtnIdx].innerText;
         const quoteStr = document.querySelectorAll('.quote-span')[likeBtnIdx].innerText;
         const likesStr = Number(document.querySelectorAll('.like-span')[likeBtnIdx].innerText);
-        
-        console.log(likeBtnIdx);
 
         try{
             const response = await fetch('/addLike', {
@@ -54,8 +52,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     'quoteIs' : quoteStr,
                     'likeIs' : likesStr
                 })
-            })
+            });
             const result = await response.json();
+            console.log(result);
+            location.reload();
         }
         catch(err){
             return console.error(err);
