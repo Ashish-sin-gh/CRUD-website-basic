@@ -75,6 +75,10 @@ mongoClient.connect(connectingString)
                 $set : {
                     likes : req.body.likeIs + 1
                 }
+            },
+            {
+                sort: {_id: -1}, //sort by decending order
+                //upsert: true  // if data is not present add the data to DB
             })
             .then(result =>{
                 console.log(result);
